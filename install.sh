@@ -1,26 +1,10 @@
 #!/bin/bash
-set -u # Error if a variable is unset
-set -e # Exit on error
+set -e
 
-# --- Configuration ---
-NEW_VERSION="0.1.0"
-REPO_URL="https://github.com/rustimate/rustimate/releases/download/v$NEW_VERSION"
+VERSION="0.1.0"
+REPO_URL="https://github.com/rustimate/rustimate/releases/download/v$VERSION"
 INSTALL_DIR="/usr/local/bin"
 
-# --- 1. Version Check ---
-if command -v rustimate >/dev/null 2>&1; then
-    CURRENT_VERSION=$(rustimate --version | awk '{print $2}')
-    if [ "$CURRENT_VERSION" == "$NEW_VERSION" ]; then
-        echo "Rustimate $CURRENT_VERSION is already installed and up to date."
-        exit 0
-    else
-        echo "Upgrading Rustimate from $CURRENT_VERSION to $NEW_VERSION..."
-    fi
-else
-    echo "Installing Rustimate v$NEW_VERSION..."
-fi
-
-# --- 2. Architecture Detection ---
 OS="$(uname -s | tr '[:upper:]' '[:lower:]')"
 ARCH="$(uname -m)"
 
@@ -47,26 +31,17 @@ esac
 FILENAME="rustimate-$PLATFORM-$TARGET.tar.gz"
 URL="$REPO_URL/$FILENAME"
 
-# --- 3. Sudo Validation (Brew Style) ---
-# We validate sudo upfront so the user isn't interrupted later.
 if [ ! -w "$INSTALL_DIR" ]; then
-    echo "Checking for sudo access (which may request your password)..."
+    echo "This installation requires administrator privileges."
     if ! sudo -v; then
-        echo "Error: Sudo access denied. Installation aborted."
+        echo "Error: Sudo validation failed."
         exit 1
     fi
-    # Keep-alive: update existing sudo time stamp until script has finished
-    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 fi
 
-# --- 4. Clean Download (No progress bars) ---
-echo "Downloading $FILENAME..."
-if ! curl -sSL "$URL" -o "/tmp/$FILENAME"; then
-    echo "Error: Failed to download $FILENAME"
-    exit 1
-fi
+echo "Downloading Rustimate $VERSION..."
+curl -sSL "$URL" -o "/tmp/$FILENAME"
 
-# --- 5. Verify Checksum ---
 echo "Verifying checksum..."
 if [ "$OS" = "darwin" ]; then
     ACTUAL_SHA=$(shasum -a 256 "/tmp/$FILENAME" | awk '{print $1}')
@@ -79,7 +54,6 @@ if [ "$ACTUAL_SHA" != "$EXPECTED_SHA" ]; then
     exit 1
 fi
 
-# --- 6. Execution & Cleanup ---
 tar -xzf "/tmp/$FILENAME" -C /tmp
 chmod +x /tmp/rustimate
 
@@ -90,4 +64,4 @@ else
 fi
 
 rm "/tmp/$FILENAME"
-echo "Installation successful."
+echo "Rustimate installed successfully."
