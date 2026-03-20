@@ -1,0 +1,5 @@
+fdcb1c1be43acc31532f8e6f2fdd5685a281d85ad17abcdd3f1bef8e3d56306a  rustimate-macos-aarch64.tar.gz
+3ee68694b62b6a9d076035a45bd0fbf70a57f94c76eee3d07c505a37c469593c  rustimate-macos-x86_64.tar.gz
+8255a7597624b9d46b17ea0befe92eeb1fa037e8e019fbf2bd0b813c63240fe1  rustimate-linux-aarch64.tar.gz
+34a0822c99cda51566853183fa27cb049ce8f67cd9a0486ec83ae8725825904d  rustimate-linux-x86_64.tar.gz
+bdcf5c3f7c6a97c4727e6a14003f1daa6c013ba9d90245ba44d6c0966b5898be  rustimate-windows-x86_64.zip
