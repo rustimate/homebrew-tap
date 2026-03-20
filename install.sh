@@ -65,3 +65,6 @@ fi
 
 rm "/tmp/$FILENAME"
 echo "Rustimate installed successfully."
+echo " "
+echo "run rustimate --help"
+echo " "
