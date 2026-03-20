@@ -26,3 +26,9 @@ else
 fi
 
 echo "Rustimate has been completely removed from your system."
+echo ""
+echo "Note: This script did not remove any generated media or source files."
+echo "You may manually delete your project files if they are no longer needed:"
+echo "  - .rsl files (Source)"
+echo "  - .mp4 files (Rendered output)"
+echo ""
