@@ -6,18 +6,18 @@ class Rustimate < Formula
   if OS.mac?
     if Hardware::CPU.arm?
       url "https://github.com/rustimate/rustimate/releases/download/v0.1.0/rustimate-macos-aarch64.tar.gz"
-      sha256 "fdcb1c1be43acc31532f8e6f2fdd5685a281d85ad17abcdd3f1bef8e3d56306a"
+      sha256 "4766082da53780ab5cc044b3ef5d6c312363745568d6f5d30602ec22fc8f95fa"
     else
       url "https://github.com/rustimate/rustimate/releases/download/v0.1.0/rustimate-macos-x86_64.tar.gz"
-      sha256 "3ee68694b62b6a9d076035a45bd0fbf70a57f94c76eee3d07c505a37c469593c"
+      sha256 "fcb8d4b9b83e83a83096382e4b9d5212e3ff3cd9420aaf7fe3aa1ffb1cad697e"
     end
   elsif OS.linux?
     if Hardware::CPU.arm?
       url "https://github.com/rustimate/rustimate/releases/download/v0.1.0/rustimate-linux-aarch64.tar.gz"
-      sha256 "8255a7597624b9d46b17ea0befe92eeb1fa037e8e019fbf2bd0b813c63240fe1"
+      sha256 "49edf839df77237c676fa920ce068ca750547c7f3f9122eccb6f035fdc4018d7"
     else
       url "https://github.com/rustimate/rustimate/releases/download/v0.1.0/rustimate-linux-x86_64.tar.gz"
-      sha256 "34a0822c99cda51566853183fa27cb049ce8f67cd9a0486ec83ae8725825904d"
+      sha256 "38840c27bf04c6411ccfb714fb7965d9a8a7c8c1b91df091f6fd91a210247034"
     end
   end
 
